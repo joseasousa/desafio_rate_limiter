@@ -126,45 +126,26 @@ Para limitação baseada em token, o cliente deve enviar o seguinte header:
 O servidor funcionará na porta 8080 e para subi-lo execute o seguinte comando:
 
 ```Bash
-docker compose up --build
+docker compose up -d
 ```
 ---
-### Teste
+#### Automated Tests via Shell Script
 
-Para realizar os testes entre no diretório teste. Nele você encontrará o script **teste.sh**.
+1. In the api folder, there are also two shell scripts to test the rate limiter:
+    1. `api/test.sh `
+    2. `api/test_rate_limiter.sh`
+2. To run first give execution permissions to the scripts:
+   ```sh
+   chmod +x api/test.sh api/test_rate_limiter.sh
+   ```
+3. To run the test scripts, use the commands:
+    ```sh
+    ./api/test.sh
+    ./api/test_rate_limiter.sh
+    ```
 
-Este script recebe 2 parâmetros. O <Parametro 1> é numérico, inteiro positovo. O <Parametro 2> é uma string aleatória
-
-Se você não quer testar com uma chave/token no Header execute o script da seguinte maneira:
-
-```Bash
-bash teste.sh 10
-```
-
-Caso você queira testar com uma chave/token no Header execute assim:
-
-```Bash
-bash teste.sh <Parametro 1> <Parametro 2>
-```
-
+4. View the container logs:
+    ```sh
+    docker logs -f rate_limiter_api
+    ```
 ---
-
-Exemplo 1:
-```Bash
-bash teste.sh 1
-```
-ou
-```
-./teste.sh 1
-```
----
-
-Exemplo 2:
-
-```Bash
-bash teste.sh 5 8rm2332prqqfr4rh3d8ghei30ks3
-```
-ou
-```Bash
-./teste.sh 5 8rm2332prqqfr4rh3d8ghei30ks3
-```

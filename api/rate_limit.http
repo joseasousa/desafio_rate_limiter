@@ -1,0 +1,15 @@
+# The TTL is set as 5 second. But it can be changed in the .env file.
+
+### GET request untokened by IP only
+GET http://localhost:8080/ HTTP/1.1
+Host: localhost:8080
+
+### GET request with know token
+GET http://localhost:8080/ HTTP/1.1
+Host: localhost:8080
+API_KEY: token1
+
+### GET requests with unknown token
+GET http://localhost:8080/ HTTP/1.1
+Host: localhost:8080
+API_KEY: invalid_token

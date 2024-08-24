@@ -1,8 +1,8 @@
 FROM golang:alpine as builder
 WORKDIR /app
 COPY . .
-RUN GOOS=linux CGO_ENABLED=0 go build -ldflags="-w -s" -o server cmd/server/main.go
+RUN GOOS=linux CGO_ENABLED=0 go build -v -o server cmd/server/main.go
 
-FROM scratch
+FROM alpine:latest
 COPY --from=builder /app/server .
 CMD ["./server"]
